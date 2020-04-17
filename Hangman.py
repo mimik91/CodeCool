@@ -4,6 +4,7 @@ import random
 def pick_capital():
     f=open("Hangman.txt", "r")
     tekst=f.read()
+    f.close()
     lista=tekst.split("\n")
     los=random.randint(0,len(lista)-1)
     capital=(lista[los])
@@ -12,27 +13,25 @@ def pick_capital():
     for n in range(0,len(capital)):
         unhashed=unhashed+[capital[n]]
     return unhashed
-    pass
 
 
 def get_hashed(word):
     hashed=[]
     for n in range(0,len(word)):
         if word[n]==" ":
-            hashed=hashed+["   "]
+            hashed=hashed+[" "]
         elif word[n]=="-":
             hashed=hashed+[" - "]
         else:    
             hashed=hashed+["_ "]    
     return hashed
-    pass
+
 
 def uncover(hashed_password, password, letter):
     for n in range(0,len(password)):
         if str(letter)==password[n]:
             hashed_password[n]=password[n]
     return hashed_password
-    pass
 
 
 def update(used_letters, letter):
@@ -58,13 +57,17 @@ def is_loose(life_points):
     pass
 
 
-def get_input(used_letters):
+
+def get_input(used_letters, password):
     while True:
         print("Podaj literę")
         leter=input()
-        if leter.isalpha():
+        if leter.isalpha() or " ":
             if len(leter)>1:
-                print("Podaj tylko jedną literę")
+                if len(leter)==len(password):
+                    return leter.upper()
+                else:
+                    print("Podaj tylko jedną literę lub całe hasło")
             elif leter.upper() in used_letters:
                 print("Już użyłeś tej litery")
             else:
@@ -89,15 +92,22 @@ def main():
     while live>0:
         print("masz "+str(live)+ odmiana(live))
         print("".join(hashed_password))
-        leter=get_input(used_letters)
-        used_letters=update(used_letters,leter)
-        print("Zużyte litery: ", ", ".join(used_letters))
-        uncover(hashed_password, password, leter)
-        if leter not in password:
-            live=live-1
+        leter=get_input(used_letters, password)
+        if len(leter)>1:
+            if leter==("".join(password)):
+                hashed_password=password
+            else:
+                print("Nie, chodziło o inną stolicę")
+                live=live-1
+        else:
+            used_letters=update(used_letters,leter)
+            print("Zużyte litery: ", ", ".join(used_letters))
+            uncover(hashed_password, password, leter)
+            if leter not in password:
+                live=live-1       
         if hashed_password==password:
-             print("Brawo, zgadłeś! Wygrałeś życie!")
-             break
+            print("Brawo, zgadłeś! Wygrałeś życie!")
+            break
         if live==0:
             print("You died. You are hanging")
             print("The city was "+"".join(password))

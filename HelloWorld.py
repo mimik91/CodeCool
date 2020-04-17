@@ -4,7 +4,7 @@ def hello():
     print("Hello, World!")
 
 def hi(name):
-    if (name == ""):
+    if name == "" and name is None:
         hello()
     else:
         print("Hello "+ name +"!")

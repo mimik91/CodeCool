@@ -4,9 +4,10 @@ i=0
 N=len(numbers)
 
 def swap_neigbour(numbers, j):
-    temp=numbers[j-1]
-    numbers[j-1]=numbers[j]
-    numbers[j]=temp
+    if j<=len(numbers):
+        temp=numbers[j-1]
+        numbers[j-1]=numbers[j]
+        numbers[j]=temp
 
 
 while i<N-1:
