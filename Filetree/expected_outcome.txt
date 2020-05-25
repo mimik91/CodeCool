@@ -1,0 +1,10 @@
+The contents of the current folder are:
+*--**--**--**--**--**--**--**--*
+|-- expected_outcome.txt
+|-- first
+|   `-- example.csv
+`-- second
+    |-- something.txt
+    `-- third
+        `-- idontknow.txt
+*--**--**--**--**--**--**--**--*

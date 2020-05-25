@@ -14,6 +14,8 @@ if len(sys.argv)>1:
     for n in range(1, len(sys.argv)):
         names.append(str(sys.argv[n]))
     print(*names, sep=" ") 
+
+
     for n in range(1, len(sys.argv)):
         print("Hello " +str(sys.argv[n]))
 else:
