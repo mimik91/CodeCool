@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            button{
+                margin-left: 325px;
+            }
+        </style>
+        <meta charset="utf-8">
+        <title>Flask Note form</title>
+    </head>
+    <body>
+        <!-- Page title -->
+        <h1>Flask Note form</h1>
+
+        <!-- This form will send it's data as a POST request
+            to 'http://localhost:5000/note' route when
+            the user submits the form -->
+        <form action="/note" method="post">
+            <!-- Label for the textarea to help the user understand what it is for. -->
+            <label for="note-input">Note1:</label><br>
+            <textarea id="note-input" name="note" rows="4" cols="60">{{ note if note }}</textarea><br>
+
+            <!-- Let's allow the user to submit the form. -->
+            <button type="submit">Save this note!</button>
+        </form>
+    </body>
+</html>
