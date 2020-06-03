@@ -1,0 +1,48 @@
+{% extends "Layout.html" %}
+{% block title %}Edit {% endblock %}
+{% block content %}
+    <tbody>
+        <tr>
+            {% if story_id == none %}
+                <form method="post" action="{{ url_for('post_data', new_id=last_id+1) }}">
+                <td> {{ last_id+1 }}</td>
+                <td><input type="text" id="title" name="title" minlength="5" required></td>
+                <td><textarea rows="1" type="text" id="story" name="story" required></textarea></td>
+                    <td><textarea rows="1" type="text" id="acceptance" name="acceptance" required></textarea></td>
+                <td><input type="number" step="100" min="100" max="1500" id="bussines" name="bussines"></td>
+                <td><input    type="number" step="0.5" min="0.5" max="40" id="estimation" name="estimation"></td>
+                    <td><select id="status" name="status">
+                        <option value="planning">Planing</option>
+                        <option value="todo">To Do</option>
+                        <option value="in progress">In progress</option>
+                        <option value="reviev">reviev</option>
+                        <option value="done">DONE</option></select></td>
+                <td><input type="submit"></td>
+                </form>
+            {% else %}
+                <form method="post" action="{{ url_for('post_data', new_id=story[0]) }}">
+                    <td>{{ story[0] }}</td>
+                    <td><input type="text" id="title" name="title" value="{{ story[1] }}"></td>
+                    <td><input type="text" id="story" name="story" value="{{ story[2] }}"></td>
+                    <td><input type="text" id="acceptance" name="acceptance" value="{{ story[3] }}"></td>
+                    <td><input type="number" id="bussines" name="bussines" value="{{ story[4] }}"></td>
+                    <td><input type="number" id="estimation" name="estimation" value="{{ story[5] }}"></td>
+                    <td><select id="status" name="status">
+                        <option value="planning">Planing</option>
+                        <option value="todo">To Do</option>
+                        <option value="in progress">In progress</option>
+                        <option value="reviev">reviev</option>
+                        <option value="done">DONE</option>
+                    </select>
+                    </td>
+                    <td><input type="submit"></td>
+                </form>
+
+            {% endif %}
+        </tr>
+        <tr>
+
+        </tr>
+    </tbody>
+
+{% endblock %}
